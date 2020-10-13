@@ -123,7 +123,7 @@ class NeuralNet:
 
 	@weights.setter
 	def weights(self, val):
-		raise ValueError("Weights cannot be changed by assignment")
+		raise ValueError("Weights does not support assignment.")
 
 	def _check_activations(self, activations):
 		_activations = activations.copy()
