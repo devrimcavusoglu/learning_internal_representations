@@ -59,12 +59,12 @@ class Loss:
 	@classmethod
 	def mse(cls, t_p, o_p):
 		m = t_p.shape[0]
-		return 1/(2*m) * (t_p - o_p)**2
+		return (1/m) * (t_p - o_p)**2
 
 	@classmethod
 	def mae(cls, t_p, o_p):
 		m = t_p.shape[0]
-		return (1/(2*m)) * np.abs(t_p - o_p)
+		return (1/m) * np.abs(t_p - o_p)
 
 
 	@classmethod
@@ -115,7 +115,7 @@ class NeuralNet:
 		self.activations = _activations
 
 	@property
-	def weights(self) -> (np.ndarray, np.ndarray):
+	def weights(self) -> (list, list):
 		"""
 		Return a tuple containing list of weights and biases
 		"""
@@ -123,7 +123,7 @@ class NeuralNet:
 
 	@weights.setter
 	def weights(self, val):
-		raise ValueError("Weights cannot be changed by assignment")
+		raise ValueError("Weights does not support assignment.")
 
 	def _check_activations(self, activations):
 		_activations = activations.copy()
@@ -149,7 +149,7 @@ class NeuralNet:
 		return np.sum(E_p)
 
 	def initialize_weights(self, layers: list):
-		self.__W = [np.random.randn(layers[i], s) * 0.01 for i, s in enumerate(layers[1:])]
+		self.__W = [np.random.normal(0, 0.05, size=(layers[i], s)) for i, s in enumerate(layers[1:])]
 		self.__T = [np.zeros((1, s)) for s in layers[1:]]
 
 	@staticmethod
