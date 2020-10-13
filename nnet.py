@@ -137,7 +137,7 @@ class NeuralNet:
 				try:
 					activation = getattr(Activation, a)
 				except:
-					raise NotImplementedError(f"Activation function {activation} is not implemented, try using a udf instead.")
+					raise NotImplementedError(f"Activation function {a} is not implemented, try using a udf instead.")
 				else:
 					del _activations[i]
 					_activations.insert(i, activation)
