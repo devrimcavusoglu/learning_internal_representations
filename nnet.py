@@ -117,7 +117,7 @@ class NeuralNet:
 	@property
 	def weights(self) -> (np.ndarray, np.ndarray):
 		"""
-		Return a tuple representing the dimensionality of the DataFram
+		Return a tuple containing list of weights and biases
 		"""
 		return self.__W, self.__T
 
